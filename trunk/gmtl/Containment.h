@@ -135,6 +135,11 @@ void extendVolume( Sphere<DATA_TYPE>& container,
       {
          return;
       }
+      if ( isInVolume( sphere, container ) )
+      {
+         container = sphere;
+         return;
+      }
 
       // make a vector pointing from the center of container to sphere. this is the
       // direction in which we need to move container's center
