@@ -114,48 +114,49 @@ public:
       const gmtl::Matrix<DATA_TYPE, 4, 4>& m = projMatrix;
 
       gmtl::Vec<DATA_TYPE, 3> n;
+      DATA_TYPE len;
       //left
       n = (gmtl::Vec<DATA_TYPE, 3>(m[3][0] + m[0][0],
                                    m[3][1] + m[0][1],
                                    m[3][2] + m[0][2]));
-      normalize( n );
+      len = normalize( n );
       mPlanes[PLANE_LEFT].setNormal( n );
-      mPlanes[PLANE_LEFT].setOffset(m[3][3] + m[0][3]);
+      mPlanes[PLANE_LEFT].setOffset( (m[3][3] + m[0][3]) / len );
       //right
       n = gmtl::Vec<DATA_TYPE, 3>(m[3][0] - m[0][0],
                                   m[3][1] - m[0][1],
                                   m[3][2] - m[0][2]);
-      normalize( n );
+      len = normalize( n );
       mPlanes[PLANE_RIGHT].setNormal( n );
-      mPlanes[PLANE_RIGHT].setOffset(m[3][3] - m[0][3]);
+      mPlanes[PLANE_RIGHT].setOffset( (m[3][3] - m[0][3]) / len );
       //bottom
       n = gmtl::Vec<DATA_TYPE, 3>(m[3][0] + m[1][0],
                                   m[3][1] + m[1][1],
                                   m[3][2] + m[1][2]);
-      normalize( n );
+      len = normalize( n );
       mPlanes[PLANE_BOTTOM].setNormal( n );
-      mPlanes[PLANE_BOTTOM].setOffset(m[3][3] + m[1][3]);
+      mPlanes[PLANE_BOTTOM].setOffset( (m[3][3] + m[1][3]) / len );
       //top
       n = gmtl::Vec<DATA_TYPE, 3>(m[3][0] - m[1][0],
                               m[3][1] - m[1][1],
                               m[3][2] - m[1][2]);
-      normalize( n );
+      len = normalize( n );
       mPlanes[PLANE_TOP].setNormal( n );
-      mPlanes[PLANE_TOP].setOffset(m[3][3] - m[1][3]);
+      mPlanes[PLANE_TOP].setOffset( (m[3][3] - m[1][3]) / len );
       //near
       n = gmtl::Vec<DATA_TYPE, 3>(m[3][0] + m[2][0],
                                   m[3][1] + m[2][1],
                                   m[3][2] + m[2][2]);
-      normalize( n );
+      len = normalize( n );
       mPlanes[PLANE_NEAR].setNormal( n );
-      mPlanes[PLANE_NEAR].setOffset(m[2][3] + m[3][3]);
+      mPlanes[PLANE_NEAR].setOffset( (m[2][3] + m[3][3]) / len );
       //far
       n = gmtl::Vec<DATA_TYPE, 3>(m[3][0] - m[2][0],
                                   m[3][1] - m[2][1],
                                   m[3][2] - m[2][2]);
-      normalize( n );
+      len = normalize( n );
       mPlanes[PLANE_FAR].setNormal( n );
-      mPlanes[PLANE_FAR].setOffset(m[3][3] - m[2][3]);
+      mPlanes[PLANE_FAR].setOffset( (m[3][3] - m[2][3]) / len );
    }
 
    gmtl::Plane<DATA_TYPE> mPlanes[6];
