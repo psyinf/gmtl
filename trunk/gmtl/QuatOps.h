@@ -469,23 +469,7 @@ namespace gmtl
       result[Zelt] = result[Zelt] * length;
       return result;
    }
-   
-   /** WARNING: not implemented (do not use) */
-   template <typename DATA_TYPE>
-   void squad( Quat<DATA_TYPE>& result, DATA_TYPE t, const Quat<DATA_TYPE>& q1, const Quat<DATA_TYPE>& q2, const Quat<DATA_TYPE>& a, const Quat<DATA_TYPE>& b )
-   {
-      gmtlASSERT( false );
-   }
 
-   /** WARNING: not implemented (do not use) */
-   template <typename DATA_TYPE>
-   void meanTangent( Quat<DATA_TYPE>& result, const Quat<DATA_TYPE>& q1, const Quat<DATA_TYPE>& q2, const Quat<DATA_TYPE>& q3 )
-   {
-       gmtlASSERT( false );
-   }
-
-
-   
 /** @} */
    
 /** @ingroup Interp Quat 
