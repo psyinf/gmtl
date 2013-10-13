@@ -40,7 +40,8 @@ set_target_properties( HEADER_ONLY_TARGET PROPERTIES LINKER_LANGUAGE CXX)
 
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/${PROJECT_NAME} 
         DESTINATION ${gmtl_INSTALL_INCDIR}
-        FILES_MATCHING PATTERN "*.h")
+        FILES_MATCHING PATTERN "*.h"
+        PATTERN ".svn" EXCLUDE)
 
 ############################################################
 
@@ -105,9 +106,10 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/gmtl.fpc"
         DESTINATION "share/flagpoll"
         COMPONENT development)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/gmtl.pc"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/gmtl.fpc"
         DESTINATION "lib/pkgconfig"
-        COMPONENT development)
+        COMPONENT development
+        RENAME gmtl.pc)
 
 install(FILES gmtl-config
         DESTINATION ${gmtl_INSTALL_BINDIR}
