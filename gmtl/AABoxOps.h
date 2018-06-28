@@ -68,6 +68,19 @@ inline bool isEqual( const AABox<DATA_TYPE>& b1, const AABox<DATA_TYPE>& b2, con
           isEqual( b1.getMin(), b2.getMin(), eps ) &&
           isEqual( b1.getMax(), b2.getMax(), eps );
 }
+
+/**
+ * Check if a AABox has a volume
+ *
+ * @param box      the box to check
+ *
+ * @return  true if volume is in epsilon tolerance bigger than 0
+ */
+template < class DATA_TYPE> 
+inline bool isEmpty(const AABox<DATA_TYPE>& box)
+{
+	return gmtl::Math::isEqual(gmtl::lengthSquared(gmtl::Vec3d(box.mMax - box.mMin)), 0.0, static_cast<DATA_TYPE>(gmtl::GMTL_EPSILON));
+}
 /** @} */
 
 }
