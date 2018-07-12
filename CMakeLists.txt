@@ -44,6 +44,19 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}
         PATTERN ".svn" EXCLUDE)
 
 ############################################################
+# add interface library that enables the target export and easy usage via target_link_libraries, will not appear in VS as a project
+add_library(${PROJECT_NAME} INTERFACE)
+target_sources(${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${gmtl_hdrs}>)
+target_include_directories(${PROJECT_NAME} INTERFACE $<INSTALL_INTERFACE:${gmtl_INSTALL_INCDIR}>)
+
+install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME})
+
+install(EXPORT ${PROJECT_NAME}
+	FILE
+		${PROJECT_NAME}Targets.cmake
+	DESTINATION
+		share/${PROJECT_NAME}
+)
 
 ############################################################
 
