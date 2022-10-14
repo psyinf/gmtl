@@ -1415,7 +1415,7 @@ namespace gmtl
    inline DEST_TYPE& setRot( DEST_TYPE& result, const Vec<DATA_TYPE, 3>& from, const Vec<DATA_TYPE, 3>& to )
    {
       // @todo should assert that DEST_TYPE::DataType == DATA_TYPE
-      const DATA_TYPE epsilon = static_cast<DATA_TYPE>(0.00001);
+      const DATA_TYPE epsilon = static_cast<DATA_TYPE>(0.0000001);
 
       gmtlASSERT(
          gmtl::Math::isEqual(gmtl::length(from), static_cast<DATA_TYPE>(1.0), epsilon) &&

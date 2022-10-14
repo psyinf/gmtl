@@ -540,6 +540,20 @@ inline bool isInVolume(const Frustum<T>& f, const Point<T, 3>& p,
 }
 
 template<typename T>
+inline bool isInVolume(const Frustum<T>& f, const Point<T, 3>& p)	
+{
+	for ( unsigned int i = 0; i < 6; ++i )
+	{
+		T dist = dot(f.mPlanes[i].mNorm, static_cast< Vec<T, 3> >(p)) + f.mPlanes[i].mOffset;
+		if (dist < T(0.0) )
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+template<typename T>
 inline bool isInVolume(const Frustum<T>& f, const Sphere<T>& s)
 {
    for ( unsigned int i = 0; i < 6; ++i )

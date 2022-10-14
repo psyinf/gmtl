@@ -305,7 +305,7 @@ namespace gmtl
    {
       numHits = 0;
       bool result = intersectAABoxRay(box, seg, tIn, tOut);
-      if (tIn < 0.0 && tOut > 1.0)
+	  if (tIn < 0.0 && tOut > DATA_TYPE(1)|| tIn > DATA_TYPE(1) && tOut > DATA_TYPE(1))
       {
 	  return false;
       }
@@ -538,10 +538,8 @@ namespace gmtl
     * @return numhits, t0, t1 are undefined if return value is false
     */
    template<typename T>
-   inline bool intersect( const Sphere<T>& sphere, const Ray<T>& ray, int& numhits, T& t0, T& t1 )
+   inline bool intersect( const Sphere<T>& sphere, const Ray<T>& ray, unsigned int& numhits, T& t0, T& t1 )
    {
-      numhits = -1;
-
       // set up quadratic Q(t) = a*t^2 + 2*b*t + c
       const Vec<T, 3> offset = ray.getOrigin() - sphere.getCenter();
       const T a = lengthSquared( ray.getDir() );
@@ -606,7 +604,7 @@ namespace gmtl
     * numhits, t0, t1 are undefined if return value is false
     */
    template<typename T>
-   inline bool intersect( const Sphere<T>& sphere, const LineSeg<T>& lineseg, int& numhits, T& t0, T& t1 )
+   inline bool intersect( const Sphere<T>& sphere, const LineSeg<T>& lineseg, unsigned int& numhits, T& t0, T& t1 )
    {
       if (intersect( sphere, Ray<T>( lineseg ), numhits, t0, t1 ))
       {
@@ -639,7 +637,7 @@ namespace gmtl
     * @return numhits, t0, t1 are undefined if return value is false
     */
    template<typename T>
-   inline bool intersectVolume( const Sphere<T>& sphere, const LineSeg<T>& ray, int& numhits, T& t0, T& t1 )
+   inline bool intersectVolume( const Sphere<T>& sphere, const LineSeg<T>& ray, unsigned int& numhits, T& t0, T& t1 )
    {
       bool result = intersect( sphere, ray, numhits, t0, t1 );
       if (result && numhits == 2)
@@ -697,7 +695,7 @@ namespace gmtl
     */
    template<typename T>
    inline bool intersectVolume(const Sphere<T>& sphere, const Ray<T>& ray,
-                               int& numhits, T& t0, T& t1)
+                               unsigned int& numhits, T& t0, T& t1)
    {
       bool result = intersect(sphere, ray, numhits, t0, t1);
       if (result && numhits == 2)
@@ -793,7 +791,7 @@ namespace gmtl
     */
    template<class DATA_TYPE>
    bool intersect(const Tri<DATA_TYPE>& tri, const Ray<DATA_TYPE>& ray,
-                  float& u, float& v, float& t)
+				DATA_TYPE& u, DATA_TYPE& v, DATA_TYPE& t)
    {
       const float EPSILON = static_cast<DATA_TYPE>(0.00001);
       Vec<DATA_TYPE, 3> edge1, edge2, tvec, pvec, qvec;

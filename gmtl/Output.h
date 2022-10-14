@@ -243,7 +243,7 @@ namespace gmtl
    std::ostream& operator<<( std::ostream& out, const AABox<DATA_TYPE>& b)
    {
       out << b.mMin << " " << b.mMax << " ";
-      out << (b.mEmpty ? "true" : "false");
+      out << (b.mInitialized ? "true" : "false");
       return out;
    }
 
