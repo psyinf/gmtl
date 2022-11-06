@@ -4,7 +4,7 @@ project( gmtl )
 
 set(gmtl_MAJOR_VERSION 0)
 set(gmtl_MINOR_VERSION 7)
-set(gmtl_SUB_VERSION 0)
+set(gmtl_SUB_VERSION 1)
 set(gmtl_VERSION ${gmtl_MAJOR_VERSION}.${gmtl_MINOR_VERSION}.${gmtl_SUB_VERSION})
 set(gmtl_PACKAGE_VERSION ${gmtl_VERSION})
 
@@ -52,10 +52,8 @@ target_include_directories(${PROJECT_NAME} INTERFACE $<INSTALL_INTERFACE:${gmtl_
 install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME})
 
 install(EXPORT ${PROJECT_NAME}
-	FILE
-		${PROJECT_NAME}Targets.cmake
-	DESTINATION
-		share/${PROJECT_NAME}
+	DESTINATION	share/${PROJECT_NAME}
+	NAMESPACE ${PROJECT_NAME}:: FILE ${PROJECT_NAME}Targets.cmake
 )
 
 ############################################################
