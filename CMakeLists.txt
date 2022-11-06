@@ -62,9 +62,6 @@ install(EXPORT ${PROJECT_NAME}
 # Create and install all of the auto find tools
 # =============================================
 
-# Export the package for use from the build-tree
-# (this registers the build-tree with a global CMake-registry)
-export(PACKAGE ${PROJECT_NAME})
 
 # Create a gmtlBuildTreeSettings.cmake file for the use from the build tree
 configure_file(${PROJECT_SOURCE_DIR}/packageBuildTreeSettings.cmake.in
